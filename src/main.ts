@@ -7,18 +7,26 @@ const cardContainer = document.getElementById("container") as HTMLDivElement;
 // Kartenanzeige
 
 const renderCards = (shuffle1: ICard[], shuffle2: ICard[]) => {
-    const totalCards: ICard[] = [...shuffle1, ...shuffle2];
+  const totalCards: ICard[] = [...shuffle1, ...shuffle2];
 
-    totalCards.forEach((element: ICard) => {
-        console.log(element);
+  totalCards.forEach((element: ICard) => {
+    console.log(element);
 
-        const card = document.createElement("div");
-        card.classList.add("cards");
+    const card = document.createElement("div");
+    card.classList.add("cards");
 
-        cardContainer.appendChild(card);
+    cardContainer.appendChild(card);
 
-        return cardContainer;
-    });
+    return cardContainer;
+  });
 };
 
 renderCards(cardsArray, cardsArray);
+
+function shuffle(array: ICard[]) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+// ===test
+const shuffledArray = shuffle(cardsArray);
+console.log(shuffledArray);

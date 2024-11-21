@@ -26,13 +26,13 @@ header {
   flex-wrap: wrap; */
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(6, 8vw);
+  grid-template-columns: repeat(6, 8rem);
   gap: 10px;
 }
 
 .cards {
-  width: 8vw;
-  height: 8vw;
+  width: 8rem;
+  height: 8rem;
   background-color: aquamarine;
   border: 1px solid lawngreen;
   transition: 0.8s all ease;
@@ -47,7 +47,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 7rem;
+  font-size: 6rem;
 }
 
 .covered {

@@ -1,7 +1,6 @@
-import { ICard } from "./contracts/ICards";
-import "./style.css";
+import { ICard } from "../contracts/ICards";
 
-const cardsArray: ICard[] = [
+export const cardsArray: ICard[] = [
     {
         id: 1,
         emoji: "🍕",

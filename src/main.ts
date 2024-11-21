@@ -72,6 +72,7 @@ function checkMatchingCards() {
 startBtn?.addEventListener("click", () => {
   cardContainer.innerHTML = "";
   clickCounter = 0;
+  guessedCounter = 0;
   outputClicked.textContent = "";
   outputGuessed.textContent = "";
 

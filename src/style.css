@@ -24,11 +24,14 @@ header{
     width: 60vw;
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .cards{
     width: 8vw;
     height: 8vw;
+    background-color: aquamarine;
+    border: 1px solid lawngreen ;
 }
 
 main{

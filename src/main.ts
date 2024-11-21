@@ -5,14 +5,14 @@ import { ICard } from "./contracts/ICards";
 
 const cardContainer = document.getElementById("container") as HTMLDivElement;
 
+let arrayForMatching: number[] = [];
+
 // Kartenanzeige
 
 const renderCards = (shuffle1: ICard[], shuffle2: ICard[]) => {
   const totalCards: ICard[] = [...shuffle1, ...shuffle2];
 
   totalCards.forEach((element: ICard) => {
-    console.log(element);
-
     const card = document.createElement("div");
     card.classList.add("cards");
     card.textContent = element.emoji;
@@ -21,9 +21,10 @@ const renderCards = (shuffle1: ICard[], shuffle2: ICard[]) => {
 
     card.addEventListener("click", () => {
       card.classList.add("uncovered");
-    });
 
-    return cardContainer;
+      arrayForMatching.push(element.id);
+      checkMatchingCards();
+    });
   });
 };
 
@@ -33,6 +34,17 @@ function shuffle(array: ICard[]) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-// ===test
-const shuffledArray = shuffle(cardsArray);
-console.log(shuffledArray);
+function checkMatchingCards() {
+  console.log(arrayForMatching);
+
+  if (arrayForMatching.length === 2) {
+    if (arrayForMatching[0] === arrayForMatching[1]) {
+      console.log("Hurray! these two Cards are matched!");
+
+      return (arrayForMatching = []);
+    } else {
+      console.log("Sorry, these two Cards are NOT matched");
+      return (arrayForMatching = []);
+    }
+  }
+}

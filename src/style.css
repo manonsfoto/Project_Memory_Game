@@ -32,6 +32,19 @@ header{
     height: 8vw;
     background-color: aquamarine;
     border: 1px solid lawngreen ;
+    transition: 0.8s all ease;
+}
+
+.cards:hover{
+    cursor:grab;
+}
+
+.uncovered {
+    transform: rotateY(180deg);
+}
+
+.covered {
+    transform: rotateY(0deg);
 }
 
 main{

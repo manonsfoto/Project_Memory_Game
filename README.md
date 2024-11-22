@@ -9,8 +9,7 @@ Das Spiel wurde hauptsächlich mit **TypeScript** entwickelt und enthält coole 
 ## Deployment
 
 Die Webseite ist unter folgendem Link erreichbar:
-[Hier klicken, um das Memory Game zu spielen](#)  
-_(Füge den Link ein, sobald die Seite deployed ist.)_
+[Hier klicken, um das Memory Game zu spielen](#https://memorygamewithconfetti.netlify.app/)
 
 ### Hauptfunktionen:
 
@@ -34,4 +33,6 @@ Wir haben für eine effektive Zusammenarbeit die Kanban-Funktion von GitHub genu
 
 Hier ist ein Screenshot unseres Spiels:
 
-![Memory Game Screenshot](./assets/screenshots/memory-game.png)
+![Memory Game Screenshot](./src/img/start.png)
+![Memory Game Screenshot](./src/img/matchingConfetti.png)
+![Memory Game Screenshot](./src//img/winthegame.png)

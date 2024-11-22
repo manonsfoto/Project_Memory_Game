@@ -41,7 +41,6 @@ const renderCards = () => {
             arrayForMatching.push(element);
             checkMatchingCards();
             countClick();
-            // countGuessed();
             winGame();
         });
     });
@@ -80,8 +79,6 @@ function checkMatchingCards() {
             matchedCard1.classList.add("matched");
             matchedCard2.classList.add("matched");
 
-            console.log("matched", matchedCard1, matchedCard2);
-
             guessedCounter++;
             arrayForMatching = [];
             lockBoard = false;
@@ -98,8 +95,6 @@ function checkMatchingCards() {
 
             if (unmatchedCard1 && unmatchedCard2) {
                 setTimeout(() => {
-                    console.log("unmatched", unmatchedCard1, unmatchedCard2);
-
                     flipCardsBack(unmatchedCard1, unmatchedCard2);
                     lockBoard = false;
                 }, 1000);
@@ -122,13 +117,8 @@ startBtn?.addEventListener("click", () => {
 
 function countClick() {
     clickCounter++;
-    console.log(clickCounter);
     outputClicked.textContent = Math.floor(clickCounter / 2).toString();
 }
-
-// function countGuessed() {
-//   outputGuessed.textContent = guessedCounter.toString();
-// }
 
 function winGame() {
     const allMatchedCards = document.querySelectorAll(".matched");
@@ -149,7 +139,7 @@ function winGame() {
             guessedCounter = 0;
             outputClicked.textContent = "";
             outputGuessed.textContent = "";
-            clearInterval(interval);
+            clearInterval(interval2);
             startCount(3);
             renderCards();
         });

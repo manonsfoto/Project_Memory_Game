@@ -17,8 +17,10 @@ let clickCounter: number = 0;
 let guessedCounter: number = 0;
 // let isMatched: boolean = false;
 
-const renderCards = (shuffle1: ICard[], shuffle2: ICard[]) => {
-  const totalCards: ICard[] = [...shuffle1, ...shuffle2];
+const renderCards = () => {
+  const shuffleArr1: ICard[] = shuffle(cardsArray);
+  const shuffleArr2: ICard[] = shuffle([...cardsArray]);
+  const totalCards: ICard[] = [...shuffleArr1, ...shuffleArr2];
 
   totalCards.forEach((element: ICard) => {
     const card = document.createElement("div");
@@ -44,7 +46,7 @@ const renderCards = (shuffle1: ICard[], shuffle2: ICard[]) => {
   });
 };
 
-renderCards(shuffle(cardsArray), shuffle(cardsArray));
+renderCards();
 
 function shuffle(array: ICard[]) {
   return array.sort(() => Math.random() - 0.5);
@@ -125,7 +127,7 @@ startBtn?.addEventListener("click", () => {
   outputClicked.textContent = "";
   outputGuessed.textContent = "";
 
-  renderCards(shuffle(cardsArray), shuffle(cardsArray));
+  renderCards();
 });
 
 function countClick() {

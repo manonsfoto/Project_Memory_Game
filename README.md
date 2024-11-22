@@ -9,7 +9,7 @@ Das Spiel wurde hauptsächlich mit **TypeScript** entwickelt und enthält coole 
 ## Deployment
 
 Die Webseite ist unter folgendem Link erreichbar:
-[Hier klicken, um das Memory Game zu spielen](#https://memorygamewithconfetti.netlify.app/)
+[Hier klicken, um das Memory Game zu spielen](https://memorygamewithconfetti.netlify.app/)
 
 ### Hauptfunktionen:
 

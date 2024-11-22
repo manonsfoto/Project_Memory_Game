@@ -15,12 +15,10 @@ const outputGuessed = document.querySelector(
 let arrayForMatching: ICard[] = [];
 let clickCounter: number = 0;
 let guessedCounter: number = 0;
-// let isMatched: boolean = false;
 let lockBoard: boolean = false;
+
 const renderCards = () => {
-  const shuffleArr1: ICard[] = shuffle(cardsArray);
-  const shuffleArr2: ICard[] = shuffle([...cardsArray]);
-  const totalCards: ICard[] = [...shuffleArr1, ...shuffleArr2];
+  const totalCards: ICard[] = shuffle(cardsArray);
 
   totalCards.forEach((element: ICard) => {
     const card = document.createElement("div");
@@ -34,7 +32,8 @@ const renderCards = () => {
 
     card.addEventListener("click", () => {
       if (lockBoard || card.classList.contains("uncovered")) return;
-      card.classList.add("uncovered", element.emoji);
+
+      card.classList.add("uncovered", element.name);
       paragraph.classList.remove("unvisible");
       paragraph.classList.add("visible");
 
@@ -53,39 +52,26 @@ function shuffle(array: ICard[]) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-// Flipback
-
 function flipCardsBack(card1: HTMLDivElement, card2: HTMLDivElement) {
   [card1, card2].forEach((card) => {
     card?.classList.remove("uncovered");
 
     const paragraph = card?.querySelector("p");
-
-    paragraph?.classList.remove("visible");
     paragraph?.classList.add("unvisible");
+    paragraph?.classList.remove("visible");
   });
-
-  // const uncoveredCards = document.querySelectorAll(".uncovered");
-  // uncoveredCards.forEach((card) => {
-  //   card.classList.remove("uncovered");
-  //   const paragraph = card.querySelector("p");
-  //   if (paragraph) {
-  //     paragraph.classList.remove("visible");
-  //     paragraph.classList.add("unvisible");
-  //   }
-  // });
 }
 
-function checkMatchingCards(): boolean {
+function checkMatchingCards() {
   if (arrayForMatching.length === 2) {
     lockBoard = true;
     if (arrayForMatching[0].id === arrayForMatching[1].id) {
       console.log("Hurray! these two Cards are matched!");
       const matchedCard1 = document.querySelector(
-        `.${arrayForMatching[0].emoji}`
+        `.${arrayForMatching[0].name}`
       ) as HTMLDivElement;
       const matchedCard2 = document.querySelector(
-        `.${arrayForMatching[1].emoji}`
+        `.${arrayForMatching[1].name}`
       ) as HTMLDivElement;
 
       matchedCard1.classList.add("matched");
@@ -96,15 +82,15 @@ function checkMatchingCards(): boolean {
       guessedCounter++;
       arrayForMatching = [];
       lockBoard = false;
-      return true;
+      // *=============================================================
     } else if (arrayForMatching[0].id !== arrayForMatching[1].id) {
       console.log("Sorry, these two Cards are NOT matched");
 
       const unmatchedCard1 = document.querySelector(
-        `.${arrayForMatching[0].emoji}`
+        `.${arrayForMatching[0].name}`
       ) as HTMLDivElement;
       const unmatchedCard2 = document.querySelector(
-        `.${arrayForMatching[1].emoji}`
+        `.${arrayForMatching[1].name}`
       ) as HTMLDivElement;
 
       if (unmatchedCard1 && unmatchedCard2) {
@@ -116,11 +102,8 @@ function checkMatchingCards(): boolean {
         }, 1000);
       }
       arrayForMatching = [];
-
-      return false;
     }
   }
-  return false;
 }
 
 startBtn?.addEventListener("click", () => {
@@ -146,8 +129,8 @@ function countClick() {
 function winGame() {
   const allMatchedCards = document.querySelectorAll(".matched");
   console.log("allmatchedcards length:", allMatchedCards.length);
-  outputGuessed.textContent = allMatchedCards.length.toString();
-  if (allMatchedCards?.length === 12) {
+  outputGuessed.textContent = Math.floor(allMatchedCards.length / 2).toString();
+  if (allMatchedCards?.length === 24) {
     console.log("Congrats!! You win!");
   }
 }

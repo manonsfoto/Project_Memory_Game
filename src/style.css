@@ -22,8 +22,6 @@ header {
 
 .card-container {
   width: 60vw;
-  /* display: flex;
-  flex-wrap: wrap; */
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(6, 8rem);
@@ -70,11 +68,9 @@ main {
   margin: 2rem;
 }
 
-/* test */
 .unvisible {
   display: none;
 }
 .visible {
   display: flex;
 }
-/* test */

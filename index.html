@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="/src/main.ts" defer></script>
-    <title>Memory Game</title>
-  </head>
-  <body>
-    <header>
-      <h1 class="headline">Memory Game</h1>
-      <div class="score-board">
-        <p>Pairs Clicked: <span id="pairs-clicked"></span></p>
-        <p>Pairs Guessed: <span id="pairs-guessed"></span></p>
-      </div>
-    </header>
-    <main>
-      <div class="card-container" id="container"></div>
-      <button class="btn" id="game-btn">Start</button>
-    </main>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="module" src="/src/main.ts" defer></script>
+        <title>Memory Game</title>
+    </head>
+    <body>
+        <header>
+            <h1 class="headline">Memory Game</h1>
+            <div class="score-board">
+                <p>Pairs Clicked: <span id="pairs-clicked"></span></p>
+                <p>Pairs Guessed: <span id="pairs-guessed"></span></p>
+            </div>
+        </header>
+        <main>
+            <div class="card-container" id="container"></div>
+            <button class="btn" id="game-btn">Start</button>
+
+            <div id="winModal" class="modal" style="display: none">
+                <div class="modal-content">
+                    <h1>🎉 Congrats!! You win! 🎉</h1>
+                    <button class="btnModal" id="closeModal">Close</button>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>

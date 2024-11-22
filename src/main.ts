@@ -16,7 +16,7 @@ let lockBoard: boolean = false;
 
 const time = document.querySelector("#time") as HTMLDivElement;
 let counter: number = 0;
-let interval: number;
+let interval2: number;
 
 const renderCards = () => {
     const totalCards: ICard[] = shuffle(cardsArray);
@@ -115,7 +115,7 @@ startBtn?.addEventListener("click", () => {
     guessedCounter = 0;
     outputClicked.textContent = "";
     outputGuessed.textContent = "";
-    clearInterval(interval);
+    clearInterval(interval2);
     startCount(3);
     renderCards();
 });
@@ -144,6 +144,14 @@ function winGame() {
         const closeModal = document.getElementById("closeModal") as HTMLElement;
         closeModal.addEventListener("click", () => {
             modal.style.display = "none";
+            cardContainer.innerHTML = "";
+            clickCounter = 0;
+            guessedCounter = 0;
+            outputClicked.textContent = "";
+            outputGuessed.textContent = "";
+            clearInterval(interval);
+            startCount(3);
+            renderCards();
         });
 
         // Animations & Sounds
@@ -152,7 +160,7 @@ function winGame() {
             animationEnd = Date.now() + duration,
             defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-        function randomInRange(min: any, max: any) {
+        function randomInRange(min: number, max: number) {
             return Math.random() * (max - min) + min;
         }
 
@@ -179,22 +187,20 @@ function winGame() {
                 })
             );
         }, 250);
-        clearInterval(interval);
+        clearInterval(interval2);
     }
 }
 
 function randomBurst() {
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-    // Randomize the origin position
     const randomX = Math.random();
     const randomY = Math.random();
 
-    // Trigger the confetti burst
     confetti(
         Object.assign({}, defaults, {
-            particleCount: 100, // Number of particles
-            origin: { x: randomX, y: randomY }, // Random position
+            particleCount: 100,
+            origin: { x: randomX, y: randomY },
         })
     );
 }
@@ -202,11 +208,10 @@ function randomBurst() {
 function singleBurst() {
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-    // Trigger the confetti burst
     confetti(
         Object.assign({}, defaults, {
-            particleCount: 100, // Number of particles in the burst
-            origin: { x: 0.5, y: 0.5 }, // Center of the screen
+            particleCount: 100,
+            origin: { x: 0.5, y: 0.5 },
         })
     );
 }
@@ -226,17 +231,36 @@ const startCount = (minutesValue: number) => {
     if (minutesValue) {
         counter = minutesValue * 60;
 
-        interval = setInterval(() => {
+        interval2 = setInterval(() => {
             counter--;
             displayTime();
 
             if (counter === 0) {
-                clearInterval(interval);
-                console.log("Time is Out!");
+                clearInterval(interval2);
+                showTimeoutModal();
                 // game soll deaktiviert werden
             }
         }, 1000);
     }
 };
-startCount(3);
+
+const showTimeoutModal = () => {
+    const modal = document.getElementById("timeoutModal") as HTMLElement;
+    const closeModal = document.getElementById("closeTimeoutModal") as HTMLElement;
+
+    modal.style.display = "flex"; // Show the modal
+
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+        cardContainer.innerHTML = "";
+        clickCounter = 0;
+        guessedCounter = 0;
+        outputClicked.textContent = "";
+        outputGuessed.textContent = "";
+        clearInterval(interval2);
+        startCount(3);
+        renderCards();
+    });
+};
+
 // ========================

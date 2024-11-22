@@ -16,7 +16,7 @@ let arrayForMatching: ICard[] = [];
 let clickCounter: number = 0;
 let guessedCounter: number = 0;
 // let isMatched: boolean = false;
-
+let lockBoard: boolean = false;
 const renderCards = () => {
   const shuffleArr1: ICard[] = shuffle(cardsArray);
   const shuffleArr2: ICard[] = shuffle([...cardsArray]);
@@ -33,6 +33,7 @@ const renderCards = () => {
     cardContainer.appendChild(card);
 
     card.addEventListener("click", () => {
+      if (lockBoard || card.classList.contains("uncovered")) return;
       card.classList.add("uncovered", element.emoji);
       paragraph.classList.remove("unvisible");
       paragraph.classList.add("visible");
@@ -77,6 +78,7 @@ function flipCardsBack(card1: HTMLDivElement, card2: HTMLDivElement) {
 
 function checkMatchingCards(): boolean {
   if (arrayForMatching.length === 2) {
+    lockBoard = true;
     if (arrayForMatching[0].id === arrayForMatching[1].id) {
       console.log("Hurray! these two Cards are matched!");
       const matchedCard1 = document.querySelector(
@@ -93,7 +95,7 @@ function checkMatchingCards(): boolean {
 
       guessedCounter++;
       arrayForMatching = [];
-
+      lockBoard = false;
       return true;
     } else if (arrayForMatching[0].id !== arrayForMatching[1].id) {
       console.log("Sorry, these two Cards are NOT matched");
@@ -110,6 +112,7 @@ function checkMatchingCards(): boolean {
           console.log("unmatched", unmatchedCard1, unmatchedCard2);
 
           flipCardsBack(unmatchedCard1, unmatchedCard2);
+          lockBoard = false;
         }, 1000);
       }
       arrayForMatching = [];

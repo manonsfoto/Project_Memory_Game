@@ -17,6 +17,7 @@ let arrayForMatching: ICard[] = [];
 let clickCounter: number = 0;
 let guessedCounter: number = 0;
 let lockBoard: boolean = false;
+let counterForTimerStart: number = 0;
 
 const time = document.querySelector("#time") as HTMLDivElement;
 let counter: number = 0;
@@ -37,7 +38,10 @@ const renderCards = () => {
 
     card.addEventListener("click", () => {
       if (lockBoard || card.classList.contains("uncovered")) return;
-
+      counterForTimerStart++;
+      if (counterForTimerStart === 1) {
+        startCount(3);
+      }
       card.classList.add("uncovered", element.name);
       paragraph.classList.remove("unvisible");
       paragraph.classList.add("visible");
@@ -232,5 +236,5 @@ const startCount = (minutesValue: number) => {
     }, 1000);
   }
 };
-startCount(3);
+
 // ========================

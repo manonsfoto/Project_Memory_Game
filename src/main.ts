@@ -112,7 +112,8 @@ startBtn?.addEventListener("click", () => {
   guessedCounter = 0;
   outputClicked.textContent = "";
   outputGuessed.textContent = "";
-
+  clearInterval(interval);
+  startCount(3);
   renderCards();
 });
 
@@ -131,6 +132,39 @@ function winGame() {
   console.log("allmatchedcards length:", allMatchedCards.length);
   outputGuessed.textContent = Math.floor(allMatchedCards.length / 2).toString();
   if (allMatchedCards?.length === 24) {
+    clearInterval(interval);
     console.log("Congrats!! You win!");
   }
 }
+
+// =========timer function
+const time = document.querySelector("#time") as HTMLDivElement;
+let counter: number = 0;
+let interval: number;
+const displayTime = () => {
+  let counterMinutes: number = Math.floor(counter / 60);
+  let counterSeconds: number = counter - 60 * counterMinutes;
+
+  time.textContent = `${counterMinutes
+    .toString()
+    .padStart(2, "0")}:${counterSeconds.toString().padStart(2, "0")}`;
+};
+
+const startCount = (minutesValue: number) => {
+  if (minutesValue) {
+    counter = minutesValue * 60;
+
+    interval = setInterval(() => {
+      counter--;
+      displayTime();
+
+      if (counter === 0) {
+        clearInterval(interval);
+        console.log("Time is Out!");
+        // game soll deaktiviert werden
+      }
+    }, 1000);
+  }
+};
+startCount(3);
+// ========================
